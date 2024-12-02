@@ -1,0 +1,43 @@
+
+1455. Check If a Word Occurs As a Prefix of Any Word in a Sentence
+
+
+class Solution {
+public:
+    int isPrefixOfWord(string sentence, string searchWord) {
+        int len = searchWord.size(); // Length of the search word
+        int ans = 1, i = 0, j = 0;   // Word count and indices
+        int n = sentence.size();
+
+        while (j < n) {
+            // Increment word count when encountering a space
+            if (sentence[j] == ' ') {
+                ans++;
+                j++;
+                continue;
+            }
+
+            // Check if a new word starts
+            if (j == 0 || sentence[j - 1] == ' ') {
+                i = 0;
+                int cnt = len;
+                // Check for prefix match
+                while (j < n && sentence[j] == searchWord[i]) {
+                    cnt--;
+                    i++;
+                    j++;
+                    if (cnt == 0) {
+                        return ans; // Return word index if prefix matches
+                    }
+                }
+            }
+
+            // Move to the next word
+            while (j < n && sentence[j] != ' ') {
+                j++;
+            }
+        }
+
+        return -1; // Return -1 if no prefix match is found
+    }
+};
