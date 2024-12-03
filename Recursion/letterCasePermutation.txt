@@ -1,0 +1,26 @@
+#include<iostream>
+#include <cctype>
+using namespace std;
+
+void subset(string input,string output,int n,int i){
+	if(n == i){
+		cout<<output<<" / ";
+		return;
+	}
+	if(isalpha(input[i])){
+			subset(input,output+char(tolower(input[i])),n,i+1);
+	subset(input,output+char(toupper(input[i])),n,i+1);	
+}
+else{
+		subset(input,output+input[i],n,i+1);	
+}
+}
+
+int main(){
+string	s = "a1b2c";
+string	a = "";
+int n = 5;
+int i = 0;
+	subset(s,a,n,i);
+	return 0;
+}

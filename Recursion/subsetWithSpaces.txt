@@ -1,0 +1,20 @@
+#include<iostream>
+using namespace std;
+
+void subset(string input,string output,int n,int i){
+	if(n-1 == i){
+		cout<<output<<" / ";
+		return;
+	}
+	subset(input,output+input[i+1],n,i+1);
+	subset(input,output + "_" + input[i + 1],n,i+1);		
+}
+
+int main(){
+string	s = "abc";
+string	a = "a";
+int n = 3;
+int i = 0;
+	subset(s,a,n,i);
+	return 0;
+}

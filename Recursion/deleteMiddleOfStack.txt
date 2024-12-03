@@ -1,0 +1,17 @@
+class Solution {
+  public:
+    void deleteMiddleElement(stack<int>& s, int n){
+        if(n == 0){
+           s.pop();
+           return;
+        }
+        int temp = s.top();
+        s.pop();
+        deleteMiddleElement(s,n-1);
+        s.push(temp);
+    }
+    void deleteMid(stack<int>& s, int sizeOfStack) {
+        int n = sizeOfStack/2;
+        deleteMiddleElement(s,n);
+    }
+};

@@ -1,0 +1,21 @@
+
+2109. Adding Spaces to a String
+
+class Solution {
+public:
+    string addSpaces(string s, vector<int>& spaces) {
+        string ans = "";
+        int n = s.size();
+        int cnt = 0,i = 0,j = 0;
+        while(j<n){
+            if(i<spaces.size() && cnt == spaces[i]){
+                ans+=' ';
+                i++;
+            }
+            ans+=s[j];
+            j++;
+            cnt++;
+        }
+        return ans;
+    }
+};

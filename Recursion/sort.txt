@@ -1,0 +1,19 @@
+void insert(vector<int> &arr,int temp){
+        if(arr.size()==0 || arr[arr.size()-1]<=temp){
+            arr.push_back(temp);
+            return;
+        }
+        int val = arr[arr.size()-1];
+        arr.pop_back();
+        insert(arr,temp);
+        arr.push_back(val);
+    }
+    void sortArr(vector<int> &arr) {
+        if(arr.size() == 1){
+            return;
+        }
+        int temp = arr[arr.size()-1];
+        arr.pop_back();
+        sortArr(arr);
+        insert(arr,temp);
+    }
