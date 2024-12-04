@@ -1,0 +1,22 @@
+#include<iostream>
+#include <cctype>
+using namespace std;
+
+void balancedPranthesis(int size,string output,int op,int cl){
+	if(op == size/2 && cl == size/2){
+		cout<<output<<" / ";
+		return;
+	}
+	if(cl < op && cl < size/2){
+		balancedPranthesis(size,output+')',op,cl+1);
+	}
+	if(op < size/2){
+		balancedPranthesis(size,output+'(',op+1,cl);
+	}
+}
+
+int main(){
+string	a = "";
+	balancedPranthesis(6,a,0,0);
+	return 0;
+}

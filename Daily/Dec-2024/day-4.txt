@@ -1,0 +1,14 @@
+2825. Make String a Subsequence Using Cyclic Increments
+
+class Solution {
+public:
+    bool canMakeSubsequence(string str1, string str2) {
+        int j = 0;
+        for (char c : str1) {
+            if (j < str2.size() && (c == str2[j] || (c == 'z' && str2[j] == 'a') || (c + 1 == str2[j]))) {
+                j++; 
+            }
+        }
+        return j == str2.size();
+    }
+};
