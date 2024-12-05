@@ -1,0 +1,13 @@
+void subsetSolving(vector<int>& arr,vector<int>& ans,int n,int sum){
+        if(n == -1){
+            ans.push_back(sum);
+        }
+        subsetSolving(arr,ans,n-1,sum);
+        subsetSolving(arr,ans,n-1,sum + arr[n]);
+    }
+    vector<int> subsetSums(vector<int>& arr) {
+        vector<int>ans;
+        subsetSolving(arr,ans,arr.size()-1,0);
+        sort(ans.begin(),ans.end());
+        return ans;
+    }
