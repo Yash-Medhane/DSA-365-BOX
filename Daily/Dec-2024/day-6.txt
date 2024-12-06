@@ -1,0 +1,26 @@
+class Solution {
+public:
+    int maxCount(vector<int>& banned, int n, int maxSum) {
+        int currentNumber = 1;
+        long long currentSum = 0;
+        int bannedIndex = 0;
+        int validCount = 0;
+
+        sort(banned.begin(), banned.end());
+
+        while (currentNumber <= n && currentSum + currentNumber <= maxSum) {
+            if (bannedIndex < banned.size() && banned[bannedIndex] == currentNumber) {
+                while (bannedIndex < banned.size() && banned[bannedIndex] == currentNumber) {
+                    bannedIndex++;
+                }
+                currentNumber++;
+            } else {
+                validCount++;
+                currentSum += currentNumber;
+                currentNumber++;
+            }
+        }
+
+        return validCount;
+    }
+};
