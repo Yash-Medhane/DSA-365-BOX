@@ -1,0 +1,34 @@
+class Solution {
+  public:
+    void solving(vector<int>&result,vector<int>&temp,int &end){
+        if(end == 0){
+            int num = 0;
+            for(int n : temp) num = num*10+n;
+            result.push_back(num);
+            return;
+        }
+        
+        for(int i=1;i<10;i++){
+            if(temp.empty() || i > temp.back()){
+               temp.push_back(i);
+               end--;
+            solving(result,temp,end); 
+            end++;
+            temp.pop_back();
+            }
+        }
+    }
+    vector<int> increasingNumbers(int n) {
+        vector<int>result;
+        if(n == 1){
+           for(int i=0;i<10;i++){
+                result.push_back(i);
+           }
+            return result;
+        }
+        vector<int>temp;
+        solving(result,temp,n);
+        
+        return result;
+    }
+};
