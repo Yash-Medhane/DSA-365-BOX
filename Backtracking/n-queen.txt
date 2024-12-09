@@ -1,0 +1,43 @@
+class Solution{
+public:
+    bool isValid(int col, int row, int n, 
+                 unordered_set<int>& rows, 
+                 unordered_set<int>& lDiagonal, 
+                 unordered_set<int>& rDiagonal) {
+        if (rows.find(row) != rows.end()) return false;
+        if (lDiagonal.find(col + row) != lDiagonal.end()) return false;
+        if (rDiagonal.find(n - 1 + col - row) != rDiagonal.end()) return false;
+        return true;
+    }
+    void solve(int col,vector<vector<int>>&ans,vector<int>&board,unordered_set<int>&rows
+                     ,unordered_set<int>&lDiagonal,unordered_set<int>rDiagonal,int n){
+          
+          if(col == n){
+              ans.push_back(board);
+              return;
+          }  
+          
+          for(int row = 0;row<n;row++){
+              if(isValid(col,row,n,rows,lDiagonal,rDiagonal)){
+                  rows.insert(row);
+                  lDiagonal.insert(col+row);
+                  rDiagonal.insert(n-1+col-row);
+                  board.push_back(row+1);
+                  solve(col+1,ans,board,rows,lDiagonal,rDiagonal,n);
+                  board.pop_back();
+                   rows.erase(row);
+                  lDiagonal.erase(col+row);
+                  rDiagonal.erase(n-1+col-row);
+              }
+          }
+        }
+    vector<vector<int>> nQueen(int n) {
+        vector<vector<int>>ans;
+        vector<int>board;
+        unordered_set<int>rows;
+        unordered_set<int>lDiagonal;
+        unordered_set<int>rDiagonal;
+        solve(0,ans,board,rows,lDiagonal,rDiagonal,n);
+        return ans;
+    }
+};

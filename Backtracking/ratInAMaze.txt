@@ -1,0 +1,36 @@
+struct Choice{
+  char dName;
+  int dx,dy;
+}; 
+
+ class Solution {
+  public:
+
+ void ratPathFinding(int x,int y,int n,vector<vector<int>> &mat,vector<string>&ans,string &path,vector<Choice>&choices)
+ {
+     if(x == n-1 && y == n-1){
+         ans.push_back(path);
+         return;
+     }
+     
+     for(auto&choice : choices){
+         int newX = x + choice.dx;
+         int newY = y + choice.dy;
+         if( (newX>=0 && newX<n) && (newY>=0 && newY<n) && mat[newX][newY] == 1){
+             mat[x][y] = 0;
+             path.push_back(choice.dName);
+             ratPathFinding(newX,newY,n,mat,ans,path,choices);
+             mat[x][y] = 1;
+             path.pop_back();
+         }
+     }
+ }
+    vector<string> findPath(vector<vector<int>> &mat) {
+        vector<string>ans;
+        string path = "";
+        if(mat[0][0] == 1){
+             vector<Choice> choices = {{'U', -1, 0}, {'R', 0, 1}, {'L', 0, -1}, {'D', 1, 0}};
+           ratPathFinding(0,0,mat.size(),mat,ans,path,choices); 
+        }
+        return ans;
+    }
