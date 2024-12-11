@@ -1,0 +1,52 @@
+// BOTTOM-UP APPROACH  
+
+int knapSack(int kw, vector<int> &val, vector<int> &wt) {
+        int s = val.size();
+        vector<vector<int>>memo(s+1,vector<int>(kw+1,-1));
+        
+        for(int i=0;i<s+1;i++){
+            memo[i][0] = 0;
+        }
+        for(int j=0;j<kw+1;j++){
+            memo[0][j] = 0;
+        }
+        for(int i=1;i<s+1;i++){
+            for(int j=1;j<kw+1;j++){
+                if(wt[i-1]<=j){
+                    memo[i][j]=max(val[i-1]+memo[i-1][j-wt[i-1]],memo[i-1][j]);
+                }
+                else{
+                    memo[i][j]=memo[i-1][j];
+                }
+            }
+        }
+        return memo[s][kw];
+    }
+};  
+
+
+//TOP-DOWN APPROACH 
+
+int knapSack(int kw, vector<int> &val, vector<int> &wt) {
+        int s = val.size();
+        vector<vector<int>>memo(s+1,vector<int>(kw+1,-1));
+        
+        for(int i=0;i<s+1;i++){
+            memo[i][0] = 0;
+        }
+        for(int j=0;j<kw+1;j++){
+            memo[0][j] = 0;
+        }
+        for(int i=1;i<s+1;i++){
+            for(int j=1;j<kw+1;j++){
+                if(wt[i-1]<=j){
+                    memo[i][j]=max(val[i-1]+memo[i-1][j-wt[i-1]],memo[i-1][j]);
+                }
+                else{
+                    memo[i][j]=memo[i-1][j];
+                }
+            }
+        }
+        return memo[s][kw];
+    }
+};
