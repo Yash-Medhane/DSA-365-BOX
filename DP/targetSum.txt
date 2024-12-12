@@ -1,0 +1,32 @@
+class Solution {
+public:
+    int subsetCount(vector<int>&nums, int t){
+        int s = nums.size();
+        vector<vector<int>>memo(s+1,vector<int>(t+1,0));
+        for(int i=0;i<=s;i++){
+            memo[i][0] = 1;
+        }
+        for(int j=1;j<=t;j++){
+            memo[0][j] = 0;
+        }
+        for(int i=1;i<=s;i++){
+            for(int j=0;j<=t;j++){
+                if(nums[i-1]<=j){
+                    memo[i][j] = memo[i-1][j-nums[i-1]] + memo[i-1][j];
+                }
+                else{
+                    memo[i][j] = memo[i-1][j];
+                }
+            }
+        }
+        return memo[s][t];
+    }
+    int findTargetSumWays(vector<int>& nums, int target) {
+       int sum = 0;
+       for(int num : nums) sum+=num;
+       if((sum+target)%2 != 0) return 0;
+       int k = (sum+target)/2;
+       if (k < 0) return 0;
+       return subsetCount(nums,k);
+    }
+};

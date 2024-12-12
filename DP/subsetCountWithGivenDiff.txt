@@ -1,0 +1,33 @@
+int subsetCount(vector<int>&arr, int t){
+        int s = arr.size();
+        vector<vector<int>>memo(s+1,vector<int>(t+1,0));
+        
+        for(int i=0;i<=s;i++){
+          memo[i][0] = 1;  
+        }
+        for(int j=1;j<=t;j++){
+          memo[0][j] = 0;
+        }
+        for(int i=1;i<=s;i++){
+            for(int j=0;j<=t;j++){
+                if(arr[i-1]<=j){
+                    memo[i][j] = memo[i-1][j-arr[i-1]]+memo[i-1][j];
+                }
+                else{
+                    memo[i][j] = memo[i-1][j];
+                }
+            }
+        }
+        return memo[s][t];
+    }
+    int countPartitions(vector<int>& arr, int d) {
+        int sum = 0;
+    for (int n : arr) {
+        sum += n;
+    }
+    
+    if ((sum + d) % 2 != 0) return 0;
+    
+    int target = (sum + d) / 2;
+        return subsetCount(arr,(sum+d)/2);
+    }
