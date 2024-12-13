@@ -1,0 +1,15 @@
+ int cutRod(vector<int> &val) {
+        int s = val.size();
+        vector<vector<int>>memo(s+1,vector<int>(s+1,0));
+        for(int i=1;i<=s;i++){
+            for(int j=1;j<=s;j++){
+                if(i <= j){
+                  memo[i][j] = max(val[i-1] + memo[i][j-i],memo[i-1][j]);  
+                }
+                else{
+                    memo[i][j] = memo[i-1][j];
+                }
+            }
+        }
+        return memo[s][s];
+    }

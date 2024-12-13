@@ -1,0 +1,31 @@
+int coinChange(vector<int>& coins, int amount) {
+        int s = coins.size();
+        if (coins.empty()) {
+            return -1;
+        }
+        vector<vector<int>> memo(s + 1, vector<int>(amount + 1, INT_MAX - 1));
+
+        for (int i = 0; i <= s; i++) {
+            memo[i][0] = 0;
+        }
+
+        for (int j = 1; j <= amount; j++) {
+            if (j % coins[0] == 0) {
+                memo[1][j] = j / coins[0];
+            } else {
+                memo[1][j] = INT_MAX - 1;
+            }
+        }
+
+        for (int i = 2; i <= s; i++) {
+            for (int j = 1; j <= amount; j++) {
+                if (coins[i - 1] <= j) {
+                    memo[i][j] = min(memo[i][j - coins[i - 1]] + 1, memo[i - 1][j]);
+                } else {
+                    memo[i][j] = memo[i - 1][j];
+                }
+            }
+        }
+
+        return memo[s][amount] == INT_MAX - 1 ? -1 : memo[s][amount];
+    }
