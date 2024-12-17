@@ -1,0 +1,27 @@
+class Solution {
+public:
+    string repeatLimitedString(string s, int repeatLimit) {
+        map<char,int, greater<char>>freq;
+        for(char c : s) freq[c]++;
+
+        string ans = "";
+        while(!freq.empty()){
+            auto it = freq.begin();
+            char curr = it->first;
+            int count = min(repeatLimit, it->second);
+            ans.append(count, curr);
+            it->second -= count;
+            if(it->second == 0) freq.erase(it);
+            else{
+                if(freq.size() > 1){
+                    auto nextIt = next(freq.begin());
+                    char nextChar = nextIt->first;
+                    ans.push_back(nextChar);
+                    if(--nextIt->second == 0) freq.erase(nextIt);
+                }
+                else break;
+            }
+         }
+         return ans;
+    }
+};
