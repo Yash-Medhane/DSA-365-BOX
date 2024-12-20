@@ -1,0 +1,23 @@
+class Solution {
+public:
+   vector<vector<int>> memo;
+    Solution() : memo(101, vector<int>(10001, -1)) {}
+    int superEggDrop(int e, int f) {
+       if(f == 0 || f == 1 || e == 1) return f;
+       if(memo[e][f] != -1) return memo[e][f];
+        int mn = INT_MAX, low = 0, high = f, temp = 0;
+       while(low <= high){
+        int mid = (low + high)/2;
+        int left = superEggDrop(e-1,mid-1);
+        int right = superEggDrop(e,f-mid);
+        temp = 1 + max(left, right);
+         if(left < right) 
+                low = mid+1;
+            else 
+                high = mid-1; 
+    
+            mn = min(mn, temp);
+       }
+       return memo[e][f] = mn;
+    }
+};
