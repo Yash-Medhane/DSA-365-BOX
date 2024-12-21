@@ -1,0 +1,19 @@
+   int n = h.size();
+    vector<int> memo(n, 0);
+    memo[0] = 0;  // No cost to be at the starting point
+    memo[1] = abs(h[1] - h[0]);  // Cost to move from the first to the second stone
+
+    // Fill the memo array with the minimum costs
+    for (int i = 2; i < n; i++) {
+        int ans = INT_MAX;
+        for (int j = 1; j <= k; j++) {
+            if (i - j >= 0) {
+                ans = min(ans, memo[i - j] + abs(h[i] - h[i - j]));
+            }
+        }
+        memo[i] = ans;
+    }
+
+    // Return the minimum cost to reach the last stone
+    return memo[n - 1];
+}

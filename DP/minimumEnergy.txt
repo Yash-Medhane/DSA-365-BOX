@@ -1,0 +1,12 @@
+ int minimumEnergy(vector<int>& h, int n) {
+        vector<int>memo(n,0);
+        memo[0] = 0;
+         if (n > 1) {
+        memo[1] = abs(h[1] - h[0]); // Energy to jump to the second stone
+    }
+        int ans = INT_MAX;
+        for(int i=2;i<n;i++){
+            memo[i] = min(memo[i-1]+abs(h[i]-h[i-1]),memo[i-2]+abs(h[i]-h[i-2]));
+        }
+        return memo[n-1];
+    }
