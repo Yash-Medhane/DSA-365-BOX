@@ -1,0 +1,9 @@
+ int maxProfit(vector<int>& prices) {
+        vector<int> memo(2, 0), cur(2, 0);
+        for (int ind = prices.size() - 1; ind >= 0; ind--) {
+            cur[1] = max(-prices[ind] + memo[0], memo[1]); // Buy
+            cur[0] = max(prices[ind] + memo[1], memo[0]);  // Sell
+            memo = cur;
+        }
+        return memo[1];
+    }
