@@ -1,0 +1,4 @@
+  if (!root) return 0; // Base case: Null node
+        int left = maxDepth(root->left);  // Calculate left subtree depth
+        int right = maxDepth(root->right); // Calculate right subtree depth
+        return max(left, right) + 1;

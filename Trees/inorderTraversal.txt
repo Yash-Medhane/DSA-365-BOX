@@ -1,0 +1,11 @@
+  void solve(TreeNode* temp,vector<int>&ans){
+        if(temp == NULL) return;
+        solve(temp->left,ans);
+ans.push_back(temp->val);
+        solve(temp->right,ans);
+    }
+    vector<int> postorderTraversal(TreeNode* root) {
+         vector<int>ans;
+        solve(root,ans);
+        return ans;
+    }
