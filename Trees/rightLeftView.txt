@@ -1,0 +1,19 @@
+class Solution {
+public:
+    void traverse(TreeNode* node,map<int,int>&mpp,int level){
+        if(!node) return;
+        if(mpp.find(level) == mpp.end()) mpp[level] = node->val;
+        traverse(node->right,mpp,level+1);
+        traverse(node->left,mpp,level+1);
+    }
+    vector<int> rightSideView(TreeNode* root) {
+        vector<int>ans;
+        if(!root) return ans;
+        map<int,int>mpp;
+        traverse(root,mpp,0);
+        for(auto &it : mpp){
+            ans.push_back(it.second);
+        }
+        return ans;
+    }
+};
