@@ -1,0 +1,17 @@
+class Solution {
+  public:
+    void traverse(Node* node,vector<vector<int>>&ans,vector<int>temp){
+        if(!node) return;
+        temp.push_back(node->data);
+        if(!node->left && !node->right) ans.push_back(temp);
+        traverse(node->left,ans,temp);
+        traverse(node->right,ans,temp);
+    }
+    vector<vector<int>> Paths(Node* root) {
+       vector<vector<int>>ans;
+       if(!root) return ans;
+       vector<int>temp;
+       traverse(root,ans,temp);
+       return ans;
+    }
+};
