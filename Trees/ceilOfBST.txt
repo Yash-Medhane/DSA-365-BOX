@@ -1,0 +1,16 @@
+int traverse(Node* root,int input,int &ans){
+    if(!root) return ans;
+    if (root->data == input) {
+        ans = root->data;
+        return ans;
+    }
+    if(input < root->data){
+        ans = root->data;
+        return traverse(root->left,input,ans);
+    }
+    return traverse(root->right,input,ans);
+}
+int findCeil(Node* root, int input) {
+  int ans = -1;
+  return traverse(root,input,ans);
+}
