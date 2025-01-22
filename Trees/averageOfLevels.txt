@@ -1,0 +1,18 @@
+ int traverse(TreeNode* node, unordered_map<int, double>& umap, unordered_map<int, int>& cnt, int level) {
+        if (!node) return level;
+        umap[level] += node->val;  // Add value to current level's sum
+        cnt[level] += 1;  // Increment node count at current level
+        int left = traverse(node->left, umap, cnt, level + 1);  // Traverse left subtree
+        int right = traverse(node->right, umap, cnt, level + 1); // Traverse right subtree
+        return max(left, right);  // Return max level depth
+    }
+
+    vector<double> averageOfLevels(TreeNode* root) {
+        vector<double> avg;
+        unordered_map<int, double> umap;
+        unordered_map<int, int> cnt;
+        int maxLevel = traverse(root, umap, cnt, 1);  // Start traversal from level 1
+        for (int i = 1; i < maxLevel; i++) {
+            avg.push_back(static_cast<double>(umap[i]) / cnt[i]);  // Compute average for each level
+        }
+        return avg;

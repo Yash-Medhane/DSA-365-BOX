@@ -1,0 +1,18 @@
+class Solution {
+public:
+    void traverse(TreeNode* root,vector<int>&ans){
+        if(!root) return;
+        traverse(root->left,ans);
+        ans.push_back(root->val);
+        traverse(root->right,ans);
+    }
+    bool isValidBST(TreeNode* root) {
+        if(!root->left && !root->right) return true;
+       vector<int>ans;
+       traverse(root,ans);
+       int n = ans.size();
+       if(n == 2 && ans[0] >= ans[1]) return false;
+       for(int i=1;i<n-1;i++) if(ans[i] <= ans[i-1] || ans[i] >= ans[i+1]) return false;
+       return true;
+    }
+};
