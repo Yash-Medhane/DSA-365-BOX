@@ -1,0 +1,10 @@
+int kthSmallest(vector<int> &arr, int k) {
+        priority_queue<int>maxh;
+        int n = arr.size(), i = 0;
+        while(i<n){
+            maxh.push(arr[i]);
+            if(maxh.size() > k) maxh.pop();
+            i++;
+        }
+        return maxh.top();
+    }
