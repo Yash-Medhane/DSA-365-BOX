@@ -1,0 +1,27 @@
+
+class Solution {
+public:
+    vector<int> frequencySort(vector<int>& nums) {
+        unordered_map<int, int> umap; // Count frequencies
+        vector<int> ans;
+        for (int num : nums) umap[num]++;
+        
+        // Max heap with {frequency, -number}
+        priority_queue<pair<int, int>> maxHeap;
+        for (auto& [num, freq] : umap) {
+            maxHeap.push({freq, -num});
+        }
+        
+        // Build the result vector
+        while (!maxHeap.empty()) {
+            int num = -maxHeap.top().second;
+            int freq = maxHeap.top().first;
+            while (freq--) ans.push_back(num); // Push each element freq times
+            maxHeap.pop();
+        }
+        
+        // Reverse to achieve ascending frequency order
+        reverse(ans.begin(), ans.end());
+        return ans;
+    }
+};
