@@ -24,7 +24,7 @@ Each topic has its own folder, and inside each folder, you will find solutions t
  ┃ ┣ 📜 BFS_Traversal.cpp
  ┃ ┣ 📜 Dijkstra_Algorithm.cpp
  ┃ ┗ 📜 Cycle_Detection.cpp
- ┗ 📂 Dynamic_Programming
+ ┗ 📂 DP
    ┣ 📜 Fibonacci_Memoization.cpp
    ┣ 📜 Knapsack_Problem.cpp
    ┗ 📜 Longest_Common_Subsequence.cpp
@@ -33,10 +33,7 @@ Each topic has its own folder, and inside each folder, you will find solutions t
 ## 📝 Platforms Used
 
 ✅ **Leetcode**  
-✅ **GeeksforGeeks**  
-✅ **Codeforces**  
-✅ **CodeChef**  
-✅ **AtCoder**  
+✅ **GeeksforGeeks**    
 
 ## 🛠 Languages Used
 
@@ -47,7 +44,7 @@ Each topic has its own folder, and inside each folder, you will find solutions t
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-username/DSA-Solutions.git
+   git clone https://github.com/Yash-Medhane/DSA-365-BOX
    ```
 2. Navigate to the required folder and open the solution file.
 3. Run the code in your preferred environment.
@@ -60,6 +57,6 @@ This repository is for personal tracking of solved problems, but feel free to ch
 If you have any queries, feel free to reach out!
 
 ---
-Happy Coding! 🎯🚀
+Success is built on daily effort—solve, learn, repeat! 🎯🚀
 
 
