@@ -1,0 +1,10 @@
+int maxProduct(vector<int>& nums) {
+        priority_queue<int> mh; // Max-heap
+        for (int num : nums) mh.push(num); // Insert all elements into the heap
+        
+        int num1 = mh.top() - 1; // Get the largest element and decrement by 1
+        mh.pop();
+        int num2 = mh.top() - 1; // Get the second largest element and decrement by 1
+        
+        return num1 * num2; // Return the product
+    }
