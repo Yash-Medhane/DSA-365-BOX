@@ -1,0 +1,13 @@
+void dfsOfGraphHelper(int node,vector<vector<int>>& adj,vector<bool>&vis,vector<int>&ans){
+        vis[node] = true;
+        ans.push_back(node);
+        for(int n : adj[node]){
+            if(!vis[n]) dfsOfGraphHelper(n,adj,vis,ans);
+        }
+    }
+    vector<int> dfsOfGraph(vector<vector<int>>& adj) {
+        vector<bool>vis(adj.size(),false);
+        vector<int>ans;
+        dfsOfGraphHelper(0,adj,vis,ans);
+        return ans;
+    }

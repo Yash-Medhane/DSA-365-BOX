@@ -1,0 +1,13 @@
+ vector<vector<int>> printGraph(int V, vector<pair<int, int>>& edges) {
+        priority_queue<pair<int,int>,vector<pair<int,int>>,greater<pair<int,int>>>minh;
+        for(auto& it : edges) minh.push({it.first,it.second});
+        vector<vector<int>>ans(V);
+        while(!minh.empty()){
+            int parent = minh.top().first;
+            int child = minh.top().second;
+            minh.pop();
+            ans[parent].push_back(child);
+            ans[child].push_back(parent);
+        }
+        return ans;
+    }
